@@ -1,0 +1,20 @@
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/c/Users/LJR/OneDrive/chessServer/build
+/usr/bin/cmake -H/mnt/c/Users/LJR/OneDrive/chessServer -B/mnt/c/Users/LJR/OneDrive/chessServer/build --check-build-system CMakeFiles/Makefile.cmake 0
+/usr/bin/cmake -E cmake_progress_start /mnt/c/Users/LJR/OneDrive/chessServer/build/CMakeFiles /mnt/c/Users/LJR/OneDrive/chessServer/build/CMakeFiles/progress.marks
+make -f CMakeFiles/Makefile2 all
+make[1]: Entering directory '/mnt/c/Users/LJR/OneDrive/chessServer/build'
+make -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/depend
+make[2]: Entering directory '/mnt/c/Users/LJR/OneDrive/chessServer/build'
+cd /mnt/c/Users/LJR/OneDrive/chessServer/build && /usr/bin/cmake -E cmake_depends "Unix Makefiles" /mnt/c/Users/LJR/OneDrive/chessServer /mnt/c/Users/LJR/OneDrive/chessServer /mnt/c/Users/LJR/OneDrive/chessServer/build /mnt/c/Users/LJR/OneDrive/chessServer/build /mnt/c/Users/LJR/OneDrive/chessServer/build/CMakeFiles/chess.dir/DependInfo.cmake --color=
+make[2]: Leaving directory '/mnt/c/Users/LJR/OneDrive/chessServer/build'
+make -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/build
+make[2]: Entering directory '/mnt/c/Users/LJR/OneDrive/chessServer/build'
+[ 14%] Building CXX object CMakeFiles/chess.dir/src/main.cpp.o
+/usr/bin/g++  -DDEBUG -I/mnt/c/Users/LJR/OneDrive/chessServer/include  -std=c++11  -O0 -Wall -g2 -ggdb   -Wwritable-strings -o CMakeFiles/chess.dir/src/main.cpp.o -c /mnt/c/Users/LJR/OneDrive/chessServer/src/main.cpp
+CMakeFiles/chess.dir/build.make:65: recipe for target 'CMakeFiles/chess.dir/src/main.cpp.o' failed
+make[2]: Leaving directory '/mnt/c/Users/LJR/OneDrive/chessServer/build'
+CMakeFiles/Makefile2:70: recipe for target 'CMakeFiles/chess.dir/all' failed
+make[1]: Leaving directory '/mnt/c/Users/LJR/OneDrive/chessServer/build'
+Makefile:97: recipe for target 'all' failed

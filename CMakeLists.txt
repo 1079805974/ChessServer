@@ -1,0 +1,62 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)   
+PROJECT(ChessServer)    
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+
+SET(CMAKE_C_COMPILER "/usr/bin/gcc")
+SET(CMAKE_CXX_COMPILER "/usr/bin/g++")
+
+
+SET(CMAKE_BUILD_TYPE "Debug")                     
+SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")  
+SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
+
+# set(CMAKE_VERBOSE_MAKEFILE ON)
+
+enable_testing()
+
+add_definitions(-DDEBUG)
+
+# add_subdirectory(test)
+
+SET(EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/bin")
+  
+INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/include")
+
+MESSAGE("Identifying the OS...")
+if(WIN32)
+  MESSAGE("This is Windows.")
+elseif(APPLE)
+  MESSAGE("This is MacOS.")
+  INCLUDE_DIRECTORIES("/usr/local/Cellar/openssl/1.0.2p/include/")
+elseif(UNIX)
+  MESSAGE("This is Linux.")
+endif()
+
+AUX_SOURCE_DIRECTORY(src DIR_SRCS)
+
+add_executable(chess
+   ${DIR_SRCS}
+)
+
+
+
+MESSAGE("Identifying the OS...")
+if(WIN32)
+elseif(APPLE)
+  target_link_libraries(chess
+    uWS
+    uv
+    ssl
+    z
+    ${CMAKE_DL_LIBS}
+  )
+elseif(UNIX)
+  target_link_libraries(chess
+    uWS
+    ssl
+    z
+    ${CMAKE_DL_LIBS}
+  )
+endif()

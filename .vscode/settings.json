@@ -1,0 +1,14 @@
+{
+    "C_Cpp.configurationWarnings": "Disabled",
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "files.associations": {
+        "istream": "cpp",
+        "*.ipp": "cpp",
+        "functional": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "unordered_map": "cpp",
+        "iostream": "cpp",
+        "iosfwd": "cpp"
+    },
+}

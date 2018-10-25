@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 引入组件库 -->
+    <title>Document</title>
+    <script src="js/clock.js"></script>
+    <script src="js/book.js"></script>
+    <script src="js/position.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/cchess.js"></script>
+    <script src="js/vue.min.js"></script>
+    <script src="./js/element.js"></script>
+    <link rel="stylesheet" href="./style/element.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>欢迎来到象棋俱乐部</h1>
+        <div v-show="!inRoom">
+            <h3>你的昵称：<el-input class="nickname" type="text" :value="nickname" :disabled="disableModify"></el-input>
+                <el-button v-show="disableModify" type="primary" @click="disableModify = !disableModify">修改</el-button>
+                <el-button v-show="!disableModify" type="success" @click="disableModify = !disableModify">保存</el-button>
+            </h3>
+            <div>
+                <el-card v-for="index in [0,1,2,3,4,5]" :key="index" class="room-card">
+                    <div class="room-card-inner">
+                        <h3>房间{{index}}</h3>
+                        <div class="room-inner">
+                            <p>红方: {{rooms[index].host !== 'null' ? rooms[index].host : '无人'}}</p>
+                            <p>黑方: {{rooms[index].guest !== 'null' ? rooms[index].guest : '无人'}}</p>
+                            <el-button :disabled="!roomAvalible(rooms[index])" type="primary" @click="enterRoom(index)">加入</el-button>
+                        </div>
+                    </div>
+                </el-card>
+            </div>
+        </div>
+    </div>
+    <div id="app2">
+        <div v-show="inRoom">
+            <div v-if="!thisRed">
+                <el-progress class="red-avatar" type="circle" :color="getColor(redPercent)" :percentage="redPercent"
+                    :show-text="false"></el-progress>
+                <div>红方：{{redName}}</div>
+                <div>局时：{{RedClocks.gameClock}}</div>
+                <div>步时：{{RedClocks.stepClock}}</div>
+            </div>
+            <div>
+                <el-progress class="black-avatar" type="circle" :color="getColor(blackPercent)" :percentage="blackPercent"
+                    :show-text="false"></el-progress>
+                <div>黑方：{{blackName!='null'?blackName:'请等待'}}</div>
+                <div>局时：{{BlackClocks.gameClock}}</div>
+                <div>步时：{{BlackClocks.stepClock}}</div>
+            </div>
+            <div v-if="thisRed">
+                <el-progress class="red-avatar" type="circle" :color="getColor(redPercent)" :percentage="redPercent"
+                    :show-text="false"></el-progress>
+                <div>红方：{{redName}}</div>
+                <div>局时：{{RedClocks.gameClock}}</div>
+                <div>步时：{{RedClocks.stepClock}}</div>
+            </div>
+        </div>
+
+    </div>
+    <div id="board-div" style="text-align:center;white-space:nowrap;">
+        <span class="td" style="margin-right:10px">
+            <div id="container"></div>
+        </span>
+    </div>
+</body>
+<script src="js/main.js"></script>
+<style type="text/css">
+    .red-avatar {
+        background: url(./images/rk2.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    .black-avatar {
+        background: url(./images/bk2.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+
+    #app2 {
+        position: absolute;
+    }
+
+    /* a {
+        text-decoration: underline;
+        color: red;
+        cursor: pointer;
+    } */
+    .room-inner {
+        text-align: center;
+    }
+
+    .room-img {
+        display: inline;
+        width: 100%;
+        height: 100%;
+    }
+
+    .room {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .room-card+.room-card {
+        margin-left: 10px;
+    }
+
+    .room-card {
+        display: inline-block;
+        width: 30%;
+        margin-top: 20px;
+    }
+
+    .room-card-inner {
+        padding: 5px;
+    }
+
+    .nickname {
+        display: inline-block;
+        max-width: 200px;
+    }
+
+    #app {
+        text-align: center;
+    }
+
+    body {
+        background: url(../background.gif);
+    }
+
+    span.td {
+        display: inline-block;
+    }
+
+    div.label {
+        font-size: 14px;
+        padding: 2px;
+    }
+
+    select {
+        font-size: 14px;
+        width: 108px;
+        padding: 2px;
+    }
+
+    option {
+        font-size: 14px;
+    }
+
+    input.button {
+        font-size: 14px;
+        width: 108px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+</style>
+
+</html>
